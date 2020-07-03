@@ -1,0 +1,10 @@
+.teamContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.employee-card {
+    width: fit-content;
+    height: fit-content;
+}
