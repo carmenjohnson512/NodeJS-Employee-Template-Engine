@@ -15,10 +15,10 @@ Breaking down the requirements, I separated out the objective into the following
 5. Using the list of team members, generate the html page containing all members of the team
 
 ## Sample Usage
-![](node_example.gif)
+![](node_app_example.gif)
 
 ## Test Suite
-![](cmd_test.png)
+![](npm_test.gif)
 
 ## Sample Output
-![](html_generated.png)
+![](teamHTML.jpg)
