@@ -14,11 +14,11 @@ Breaking down the requirements, I separated out the objective into the following
 4. Once the Manager is added, begin adding team members
 5. Using the list of team members, generate the html page containing all members of the team
 
-## Sample Usage
-![](node_app_example.gif)
+## App Example
+![](10-EE-Summary-Template-Engine/node_app_example.gif)
 
 ## Test Suite
-![](npm_test.gif)
+![](10-EE-Summary-Template-Engine/npm_test.gif)
 
 ## Sample Output
-![](teamHTML.jpg)
+![](10-EE-Summary-Template-Engine/teamHTML.jpg)
