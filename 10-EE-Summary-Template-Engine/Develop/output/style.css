@@ -4,7 +4,19 @@
     justify-content: space-evenly;
 }
 
+.team-heading {
+    background-color: mediumturquoise;
+    color: white;
+}
+
 .employee-card {
     width: fit-content;
     height: fit-content;
+    margin: 30px 10px;
+}
+
+.card-header {
+    text-align: center;
+    background-color: mediumpurple;
+    color: white;
 }
