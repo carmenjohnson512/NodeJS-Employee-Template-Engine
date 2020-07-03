@@ -1,26 +1,29 @@
 class Employee {
-    constructor(name, id, email) {
+    constructor(name, id, email, role) {
         this.name = name;
         this.id = id;
         this.email = email;
+        this.role = role;
     };
-    getName(name) {
-        console.log(name);
+    getName() {
+        return this.name;
+        // console.log(this.name);
     };
-    getID(id) {
-        console.log(id);
+    getID() {
+        return this.id;
+        // console.log(this.id);
     };
-    getEmail(email) {
-        console.log(email);
+    getEmail() {
+        return this.email;
+        // console.log(this.email);
     };
     getRole() {
-        let role = "Employee";
-        return(role)
+        return "Employee";
+        // console.log(this.role);
     };
-    
 };
 
-const employee1 = new Employee("Carmen", "cj12345", "email@someemail.com");
+const employee1 = new Employee("Carmen", "cj12345", "email@someemail.com", "Employee");
 employee1.getName();
 employee1.getID();
 employee1.getEmail();
