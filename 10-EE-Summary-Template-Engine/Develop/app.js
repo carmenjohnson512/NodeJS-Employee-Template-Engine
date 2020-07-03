@@ -111,7 +111,7 @@ const employeeQuestions = [
         },
         type: "input",
         name: "github",
-        message: "Engineer, enter your github username:",
+        message: "Engineer, enter their github username:",
         validate: async (input) => {
             if (input == "" || /\s/.test(input)) {
                 return "Please enter a valid GitHub username";
@@ -125,7 +125,7 @@ const employeeQuestions = [
         },
         type: "input",
         name: "school",
-        message: "Intern, enter your school name:",
+        message: "Intern, enter their school name:",
         validate: async (input) => {
             if (input == "") {
                 return "Please enter a name.";
