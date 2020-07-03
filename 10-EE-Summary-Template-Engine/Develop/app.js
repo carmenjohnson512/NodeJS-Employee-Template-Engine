@@ -13,9 +13,6 @@ const render = require("./lib/htmlRenderer");
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
-inquirer.prompt([
-
-])
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
@@ -62,7 +59,7 @@ const managerQuestions = [
     },
     {
         type: "input",
-        name: "officeNum",
+        name: "officeNumber",
         message: "Enter office number:",
         validate: async (input) => {
             if (isNaN(input)) {
@@ -145,7 +142,7 @@ const employeeQuestions = [
 ]
 
 function buildTeamList() {
-    inquire.prompt(employeeQuestions).then(employeeInfo => {
+    inquirer.prompt(employeeQuestions).then(employeeInfo => {
         if (employeeInfo.role == "engineer") {
             var newMember = new Engineer(employeeInfo.name, teamList.length + 1, employeeInfo.email, employeeInfo.github);
         } else {
@@ -163,7 +160,7 @@ function buildTeamList() {
 
 function buildHtmlPage() {
     let newFile = fs.readFileSync("./templates/main.html")
-    fs.writeFileSync("./output/teamPage.html", newFile, function (err) {
+    fs.writeFileSync("./output/team.html", newFile, function (err) {
         if (err) throw err;
     })
 
@@ -171,14 +168,14 @@ function buildHtmlPage() {
 
     for (member of teamList) {
         if (member.getRole() == "Manager") {
-            buildHtmlCard("manager", member.getName(), member.getId(), member.getEmail(), "Office: " + member.getOfficeNumber());
+            buildHtmlCard("manager", member.getName(), member.getId(), member.getEmail(), "Office: " + member.getOfficeNumber(""));
         } else if (member.getRole() == "Engineer") {
             buildHtmlCard("engineer", member.getName(), member.getId(), member.getEmail(), "Github: " + member.getGithub());
         } else if (member.getRole() == "Intern") {
             buildHtmlCard("intern", member.getName(), member.getId(), member.getEmail(), "School: " + member.getSchool());
         }
     }
-    fs.appendFileSync("./output/teamPage.html", "</div></main></body></html>", function (err) {
+    fs.appendFileSync("./output/team.html", "</div></main></body></html>", function (err) {
         if (err) throw err;
     });
     console.log("Page tags closed! Operation completed.")
@@ -187,17 +184,18 @@ function buildHtmlPage() {
 
 function buildHtmlCard(memberType, name, id, email, propertyValue) {
     let data = fs.readFileSync(`./templates/${memberType}.html`, 'utf8')
-    data = data.replace("nameHere", name);
-    data = data.replace("idHere", `ID: ${id}`);
-    data = data.replace("emailHere", `Email: <a href="mailto:${email}">${email}</a>`);
+    data = data.replace("{{ name }}", name);
+    data = data.replace("{{ role }}", member.getRole());
+    data = data.replace("ID: {{ id }}", `ID: ${id}`);
+    data = data.replace("{{ email }}", `Email: <a href="mailto:${email}">${email}</a>`);
     data = data.replace("propertyHere", propertyValue);
-    fs.appendFileSync("./output/teamPage.html", data, err => { if (err) throw err; })
+    fs.appendFileSync("./output/team.html", data, err => { if (err) throw err; })
     console.log("Card appended");
 }
 
 function init() {
-    inquire.prompt(managerQuestions).then(managerInfo => {
-        let teamManager = new Manager(managerInfo.name, 1, managerInfo.email, managerInfo.officeNum);
+    inquirer.prompt(managerQuestions).then(managerInfo => {
+        let teamManager = new Manager(managerInfo.name, 1, managerInfo.email, managerInfo.officeNumber);
         teamList.push(teamManager);
         console.log(" ");
         if (managerInfo.hasTeam === "Yes") {
